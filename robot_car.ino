@@ -76,12 +76,12 @@ void Distance() {
     Serial.println("fucked");
 
     hazard();
-    for (pos = 0; pos <= 180; pos += 10) {  // goes from 0 degrees to 180 degrees
+//    for (pos = 0; pos <= 180; pos += 10) {  // goes from 0 degrees to 180 degrees
       // in steps of 1 degree
-      servo1.write(pos);  // tell servo to go to position in variable 'pos'
-      delay(50);
-    
-    }
+      servo1.write(180);  // tell servo to go to position in variable 'pos'
+      delay(500);
+      servo1.write(90); 
+  //  }
   } else if (y > 525) {
     int motorspeed1 = map(y, 525, 1023, 0, 255);
     int motorspeed2 = map(y, 525, 1023, 0, 255);
@@ -98,7 +98,7 @@ void Distance() {
     digitalWrite(taillights, 1);
 
 
-  } else if ((distance < 50) && (headlights != 0)) {
+  } else if ((distance > 50) && (headlights != 0)) {
     analogWrite(headlights, 150);
     Serial.println("Headlights on");
   }
@@ -139,9 +139,6 @@ void hazard() {
       digitalWrite(leftindercator, 1);
       digitalWrite(rightindercator, 0);
 
-      digitalWrite(leftindercator, 0);
-      digitalWrite(rightindercator, 1);
-      digitalWrite(headlights, 0);
     }
   }
   }
